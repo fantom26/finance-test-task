@@ -2,7 +2,7 @@ export enum TickerEvent {
   start = "start",
 }
 
-export interface ITicker {
+export interface ITickerApi {
   ticker: string;
   exchange: string;
   price: number;
@@ -11,4 +11,9 @@ export interface ITicker {
   dividend: number;
   yield: number;
   last_trade_time: string;
+}
+
+export interface ITicker extends ITickerApi {
+  incremented: boolean;
+  showned: boolean;
 }
