@@ -7,4 +7,10 @@ export const AppRoutes = [
     description: "Home page",
     component: lazy(() => import("../pages/home")),
   },
+  {
+    path: "/test",
+    title: "Test page",
+    description: "Test page",
+    component: lazy(() => import("../pages/test")),
+  },
 ];

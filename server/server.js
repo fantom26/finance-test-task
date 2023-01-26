@@ -62,18 +62,6 @@ function trackTickers(socket) {
   });
 }
 
-function addTicker(name) {
-  return tickers.push(name);
-}
-
-function deleteTicker(name) {
-  const indexOfTicker = tickers.indexOf(name);
-
-  const newTickersArr = tickers.slice(indexOfTicker, 1);
-
-  return newTickersArr;
-}
-
 const app = express();
 app.use(cors());
 const server = http.createServer(app);
@@ -92,10 +80,6 @@ socketServer.on("connection", (socket) => {
   socket.on("start", () => {
     trackTickers(socket);
   });
-
-  socket.on("add-ticker", addTicker);
-
-  socket.on("delete-ticker", deleteTicker);
 });
 
 server.listen(PORT, () => {

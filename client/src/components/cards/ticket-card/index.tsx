@@ -3,6 +3,7 @@ import { Avatar, Button, Card, Stack, Typography } from "@mui/material";
 import { FC } from "react";
 import { ITicker } from "utils/declarations";
 import { green, red } from "@mui/material/colors";
+import { useDispatchedActions } from "hooks";
 
 interface ITicketCard {
   info: ITicker;
@@ -10,10 +11,16 @@ interface ITicketCard {
 
 export const TicketCard: FC<ITicketCard> = (props) => {
   const { info } = props;
+  const { selectTickerForChart } = useDispatchedActions();
 
   return (
     <Card sx={{ padding: "15px" }}>
-      <Stack gap="20px" direction="row" alignItems="center" justifyContent="space-between">
+      <Stack
+        gap="15px"
+        direction="row"
+        alignItems="center"
+        justifyContent="space-between"
+      >
         <Avatar
           sx={{
             bgcolor: info.incremented ? green[200] : red[200],
@@ -47,7 +54,12 @@ export const TicketCard: FC<ITicketCard> = (props) => {
             {info.change}
           </Typography>
         </Stack>
-        <Button variant="contained">More</Button>
+        <Button
+          variant="contained"
+          onClick={() => selectTickerForChart(info.ticker)}
+        >
+          Show chart
+        </Button>
       </Stack>
     </Card>
   );

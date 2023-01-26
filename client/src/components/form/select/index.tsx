@@ -48,12 +48,18 @@ export const MultipleSelect: FC<MultipleSelectProps> = (props) => {
         MenuProps={MenuProps}
         inputProps={{ "aria-label": "Without label" }}
       >
-        {items?.map((item, index) => (
-          <MenuItem key={index} value={item}>
-            <Checkbox checked={selectedTickerNames?.indexOf(item) > -1} />
-            <ListItemText primary={item} />
+        {items.length > 0 ? (
+          items?.map((item, index) => (
+            <MenuItem key={index} value={item}>
+              <Checkbox checked={selectedTickerNames?.indexOf(item) > -1} />
+              <ListItemText primary={item} />
+            </MenuItem>
+          ))
+        ) : (
+          <MenuItem disabled value="">
+            <em>Nothing</em>
           </MenuItem>
-        ))}
+        )}
       </Select>
     </FormControl>
   );

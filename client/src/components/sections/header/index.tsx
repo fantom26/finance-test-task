@@ -1,4 +1,11 @@
-import { AppBar, Box, Container, Link as MuiLink, Stack, Typography } from "@mui/material";
+import {
+  AppBar,
+  Box,
+  Container,
+  Link as MuiLink,
+  Stack,
+  Typography,
+} from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
 
 export const Header = () => {
@@ -20,6 +27,15 @@ export const Header = () => {
               style={{ textDecoration: "none" }}
             >
               <Typography variant="h6">Treding app</Typography>
+            </MuiLink>
+
+            <MuiLink
+              component={RouterLink}
+              to="/test"
+              color="inherit"
+              style={{ textDecoration: "none" }}
+            >
+              <Typography variant="h6">test</Typography>
             </MuiLink>
           </Stack>
         </Container>

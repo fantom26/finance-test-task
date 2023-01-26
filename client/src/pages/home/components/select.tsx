@@ -5,7 +5,8 @@ import { getSocketInfo } from "store/selectors";
 
 export const Select = () => {
   const { tickerNames, selectedTickerNames } = useAppSelector(getSocketInfo);
-  const { setSelectedTickerNames } = useDispatchedActions();
+  const { setSelectedTickerNames, selectTickerForChart } =
+    useDispatchedActions();
 
   const handleChange = (event: SelectChangeEvent) => {
     const {
@@ -13,9 +14,11 @@ export const Select = () => {
     } = event;
     // @ts-ignore
     setSelectedTickerNames(value);
-  };
 
-  console.log("render");
+    if (!value.length) {
+      selectTickerForChart("");
+    }
+  };
 
   return (
     <div style={{ marginTop: "24px" }}>

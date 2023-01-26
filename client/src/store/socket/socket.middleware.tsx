@@ -17,20 +17,28 @@ export const socketMiddleware: Middleware = (store) => {
     if (socketActions.startConnecting.match(action)) {
       socket.on("connect", () => {
         socket.emit("start");
-        socket.emit("get-tickers");
+
         store.dispatch(socketActions.connectionEstablished());
       });
 
-      socket.on("ticker", setTickers);
+      console.log("isConnected", store.getState().socket.isConnected);
+      if (store.getState().socket.isConnected) {
+        socket.on("ticker", setTickers);
+      }
+
+      socket.io.on("reconnect_error", (error) => {
+        console.log("Server connection error. Server is not available!");
+
+        socket.disconnect();
+      });
     }
 
-    // if (socketActions.deleteTicker.match(action)) {
-    //   socket.emit("delete-ticker");
-    // }
-
-    // if (socketActions.addTicker.match(action)) {
-    //   socket.emit("add-ticker");
-    // }
+    if (socketActions.endConnecting.match(action)) {
+      // socket.off("connect");
+      store.dispatch(socketActions.connectionDestroyed());
+      socket.off("ticker", setTickers);
+      // socket.disconnect();
+    }
 
     next(action);
   };

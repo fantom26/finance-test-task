@@ -1,11 +1,17 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { ITicker, ITickerApi } from "utils/declarations";
 
+interface Coordinates {
+  x: string[];
+  y: number[];
+}
+
 export interface ChatState {
   tickers: ITicker[];
   tickerNames: string[];
   selectedTickerNames: string[];
-  pricesOfTicker: Record<string, number[]>;
+  tickerForChart: string;
+  pricesOfTicker: Record<string, Coordinates>;
   isEstablishingConnection: boolean;
   isConnected: boolean;
 }
@@ -14,6 +20,7 @@ const initialState: ChatState = {
   tickers: [],
   tickerNames: [],
   selectedTickerNames: [],
+  tickerForChart: "",
   pricesOfTicker: {},
   isEstablishingConnection: false,
   isConnected: false,
@@ -26,24 +33,23 @@ const socketSlice = createSlice({
     startConnecting: (state) => {
       state.isEstablishingConnection = true;
     },
+    endConnecting: (state) => {
+      state.isEstablishingConnection = false;
+    },
     connectionEstablished: (state) => {
       state.isConnected = true;
       state.isEstablishingConnection = true;
     },
+    connectionDestroyed: (state) => {
+      state.isConnected = false;
+      state.isEstablishingConnection = false;
+    },
     setSelectedTickerNames: (state, action) => {
       state.selectedTickerNames = action.payload;
     },
-    deleteTicker: (
-      state,
-      action: PayloadAction<{
-        name: string;
-      }>
-    ) => {
-      state.tickers = state.tickers.filter(
-        (ticker) => ticker.ticker !== action.payload.name
-      );
+    selectTickerForChart: (state, action) => {
+      state.tickerForChart = action.payload;
     },
-    addTicker: () => {},
     receiveAllTickers: (
       state,
       action: PayloadAction<{
@@ -73,7 +79,6 @@ const socketSlice = createSlice({
         state.tickerNames.join("") !==
         action.payload.tickers.map((ticker) => ticker.ticker).join("")
       ) {
-        console.log("here");
         state.tickerNames = action.payload.tickers.map(
           (ticker) => ticker.ticker
         );
@@ -81,9 +86,13 @@ const socketSlice = createSlice({
 
       action.payload.tickers.forEach((item) => {
         if (state.pricesOfTicker.hasOwnProperty(item.ticker)) {
-          state.pricesOfTicker[item.ticker].push(+item.price);
+          state.pricesOfTicker[item.ticker]?.y.push(+item.price);
+          state.pricesOfTicker[item.ticker]?.x.push(item.last_trade_time);
         } else {
-          state.pricesOfTicker[item.ticker] = [+item.price];
+          state.pricesOfTicker[item.ticker] = {
+            x: [item.last_trade_time],
+            y: [+item.price],
+          };
         }
       });
     },
