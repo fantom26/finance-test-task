@@ -5,14 +5,12 @@ import { getSocketInfo } from "store/selectors";
 
 export const Select = () => {
   const { tickerNames, selectedTickerNames } = useAppSelector(getSocketInfo);
-  const { setSelectedTickerNames, selectTickerForChart } =
-    useDispatchedActions();
+  const { setSelectedTickerNames, selectTickerForChart } = useDispatchedActions();
 
   const handleChange = (event: SelectChangeEvent) => {
     const {
-      target: { value },
+      target: { value }
     } = event;
-    // @ts-ignore
     setSelectedTickerNames(value);
 
     if (!value.length) {
@@ -22,12 +20,7 @@ export const Select = () => {
 
   return (
     <div style={{ marginTop: "24px" }}>
-      <MultipleSelect
-        items={tickerNames}
-        selectedTickerNames={selectedTickerNames}
-        handleChange={handleChange}
-        data-testid="multiple-select-on-home"
-      />
+      <MultipleSelect items={tickerNames} selectedTickerNames={selectedTickerNames} handleChange={handleChange} data-testid="multiple-select-on-home" />
     </div>
   );
 };

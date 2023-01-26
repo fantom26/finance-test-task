@@ -1,10 +1,11 @@
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
+import { BrowserRouter as Router } from "react-router-dom";
 import { store } from "store";
 import { ThemeProvider } from "theme";
+
 import { App } from "./app";
 import "./assets/style.css";
-import { BrowserRouter as Router } from "react-router-dom";
 
 ReactDOM.render(
   <Router>

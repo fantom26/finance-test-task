@@ -23,7 +23,7 @@ const initialState: ChatState = {
   tickerForChart: "",
   pricesOfTicker: {},
   isEstablishingConnection: false,
-  isConnected: false,
+  isConnected: false
 };
 
 const socketSlice = createSlice({
@@ -67,7 +67,7 @@ const socketSlice = createSlice({
             incremented: !oldTicker?.price
               ? true
               : ticker.price > oldTicker?.price,
-            showned: oldTicker?.showned ? true : false,
+            showned: !!oldTicker?.showned
           });
 
           return tickers;
@@ -91,12 +91,12 @@ const socketSlice = createSlice({
         } else {
           state.pricesOfTicker[item.ticker] = {
             x: [item.last_trade_time],
-            y: [+item.price],
+            y: [+item.price]
           };
         }
       });
-    },
-  },
+    }
+  }
 });
 
 export const socketActions = { ...socketSlice.actions };

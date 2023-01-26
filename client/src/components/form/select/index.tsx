@@ -1,13 +1,6 @@
-import {
-  Checkbox,
-  FormControl,
-  ListItemText,
-  MenuItem,
-  OutlinedInput,
-  Select,
-  SelectChangeEvent,
-} from "@mui/material";
 import { FC } from "react";
+
+import { Checkbox, FormControl, ListItemText, MenuItem, OutlinedInput, Select, SelectChangeEvent } from "@mui/material";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -15,9 +8,9 @@ const MenuProps = {
   PaperProps: {
     style: {
       maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-      width: 250,
-    },
-  },
+      width: 250
+    }
+  }
 };
 
 interface MultipleSelectProps {
@@ -34,7 +27,6 @@ export const MultipleSelect: FC<MultipleSelectProps> = (props) => {
       <Select
         multiple
         displayEmpty
-        // @ts-ignore
         value={selectedTickerNames}
         onChange={handleChange}
         input={<OutlinedInput />}
@@ -42,7 +34,6 @@ export const MultipleSelect: FC<MultipleSelectProps> = (props) => {
           if (selected?.length === 0) {
             return <em>Choose tickers</em>;
           }
-          // @ts-ignore
           return selected?.join(", ");
         }}
         MenuProps={MenuProps}

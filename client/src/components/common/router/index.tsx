@@ -1,5 +1,5 @@
-import { MainLayout } from "layouts";
 import { Navigate, Route, Routes } from "react-router-dom";
+import { MainLayout } from "layouts";
 import { AppRoutes } from "routes";
 
 import { Meta } from "../meta";

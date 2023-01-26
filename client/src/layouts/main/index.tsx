@@ -1,11 +1,10 @@
 import { Suspense } from "react";
 
-import { Header } from "components/sections";
 import { Outlet } from "react-router-dom";
+import { Header } from "components/sections";
 import { Loader } from "components/ui";
 
-export const MainLayout = () => {
-  return (
+export const MainLayout = () => (
     <>
       <Header />
       <Suspense fallback={<Loader />}>
@@ -13,4 +12,3 @@ export const MainLayout = () => {
       </Suspense>
     </>
   );
-};

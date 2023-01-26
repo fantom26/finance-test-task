@@ -4,12 +4,11 @@ import {
   Container,
   Link as MuiLink,
   Stack,
-  Typography,
+  Typography
 } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
 
-export const Header = () => {
-  return (
+export const Header = () => (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" sx={{ paddingBlock: "10px" }}>
         <Container>
@@ -44,4 +43,3 @@ export const Header = () => {
       </AppBar>
     </Box>
   );
-};

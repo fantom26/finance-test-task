@@ -1,7 +1,7 @@
 import { Grid } from "@mui/material";
+import { FC } from "react";
 import { TicketCard } from "components/cards";
 import { useAppSelector } from "hooks";
-import { FC } from "react";
 import { getSocketInfo } from "store/selectors";
 
 export const TickerList: FC = () => {

@@ -1,23 +1,20 @@
 import { FC, ReactNode } from "react";
 
 import { CssBaseline } from "@mui/material";
-import {
-  ThemeProvider as MUIThemeProvider,
-  createTheme,
-} from "@mui/material/styles";
+import { ThemeProvider as MUIThemeProvider, createTheme } from "@mui/material/styles";
 
 const theme = createTheme({
   palette: {
     primary: {
-      main: "#000000",
+      main: "#000000"
     },
     secondary: {
-      main: "#80868b",
+      main: "#80868b"
     },
     info: {
-      main: "#06c",
-    },
-  },
+      main: "#06c"
+    }
+  }
 });
 
 interface ThemeProps {

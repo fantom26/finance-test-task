@@ -1,8 +1,9 @@
 import { Middleware } from "redux";
-import { io, Socket } from "socket.io-client";
-import { socketActions } from "./socket.slice";
-import { ITickerApi } from "utils/declarations";
+import { Socket, io } from "socket.io-client";
 import { REACT_APP_API_URL } from "utils/constants";
+import { ITickerApi } from "utils/declarations";
+
+import { socketActions } from "./socket.slice";
 
 export const socketMiddleware: Middleware = (store) => {
   let socket: Socket;
@@ -24,10 +25,8 @@ export const socketMiddleware: Middleware = (store) => {
       });
 
       console.log("isConnected", store.getState().socket.isConnected);
-      // if (store.getState().socket.isConnected) {
-      // }
 
-      socket.io.on("reconnect_error", (error) => {
+      socket.io.on("reconnect_error", () => {
         console.log("Server connection error. Server is not available!");
 
         socket.disconnect();
@@ -35,21 +34,9 @@ export const socketMiddleware: Middleware = (store) => {
     }
 
     if (socketActions.endConnecting.match(action)) {
-      // socket.off("connect");
-      // socket.off("ticker", setTickers);
-      // socket.disconnect();
       socket.removeAllListeners();
 
       console.log("Ты сможешь! 4");
-      // socket.on("disconnect", () => {
-      //   console.log(socket.id); // undefined
-      // });
-      // socket.on("disconnect", () => {
-      //   console.log("Ты сможешь! 3");
-      //   socket.off("ticker", setTickers);
-      //   socket.off("connect");
-      // });
-
       store.dispatch(socketActions.connectionDestroyed());
     }
 

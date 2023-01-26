@@ -1,6 +1,6 @@
-import { useDispatchedActions } from "hooks";
 import { FC, useEffect } from "react";
 import { Container } from "@mui/material";
+import { useDispatchedActions } from "hooks";
 import { TickerList } from "./components/ticker-list";
 import { Select } from "./components/select";
 import { Chart } from "./components/chart";

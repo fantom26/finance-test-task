@@ -1,6 +1,4 @@
-import { useAppSelector } from "hooks";
 import { FC } from "react";
-import { getSocketInfo } from "store/selectors";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -9,13 +7,15 @@ import {
   LineElement,
   Title,
   Tooltip,
-  Legend,
+  Legend
 } from "chart.js";
 import { Line } from "react-chartjs-2";
 import { green, red } from "@mui/material/colors";
 import dayjs from "dayjs";
 import LocalizedFormat from "dayjs/plugin/localizedFormat";
 import { Box } from "@mui/material";
+import { getSocketInfo } from "store/selectors";
+import { useAppSelector } from "hooks";
 
 dayjs.extend(LocalizedFormat);
 
@@ -33,12 +33,12 @@ export const options = {
   responsive: true,
   plugins: {
     legend: {
-      position: "top" as const,
+      position: "top" as const
     },
     title: {
-      display: false,
-    },
-  },
+      display: false
+    }
+  }
 };
 
 export const Chart: FC = () => {
@@ -57,9 +57,9 @@ export const Chart: FC = () => {
         label: `Ticker of ${tickerForChart}`,
         data: pricesOfTicker?.[tickerForChart]?.y || [],
         borderColor: currentTicker?.incremented ? green[700] : red[700],
-        backgroundColor: currentTicker?.incremented ? green[700] : red[700],
-      },
-    ],
+        backgroundColor: currentTicker?.incremented ? green[700] : red[700]
+      }
+    ]
   };
   return (
     <>

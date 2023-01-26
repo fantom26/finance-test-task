@@ -4,14 +4,12 @@ import { socketMiddleware } from "./socket/socket.middleware";
 import SocketSlice from "./socket/socket.slice";
 
 const RootReducer = combineReducers({
-  socket: SocketSlice,
+  socket: SocketSlice
 });
 
 export const store = configureStore({
   reducer: RootReducer,
-  middleware: (getDefaultMiddleware) => {
-    return getDefaultMiddleware().concat([socketMiddleware]);
-  },
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat([socketMiddleware])
 });
 
 export type RootState = ReturnType<typeof store.getState>;
