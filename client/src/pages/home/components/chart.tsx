@@ -64,7 +64,7 @@ export const Chart: FC = () => {
   return (
     <>
       {tickerForChart.length > 0 ? (
-        <Box sx={{ marginBlock: 4 }}>
+        <Box sx={{ marginBlock: 4 }} >
           <Line options={options} data={data} />
         </Box>
       ) : null}

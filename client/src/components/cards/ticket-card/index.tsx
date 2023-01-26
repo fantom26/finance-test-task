@@ -1,9 +1,10 @@
 import { ArrowDownward, ArrowUpward } from "@mui/icons-material";
 import { Avatar, Button, Card, Stack, Typography } from "@mui/material";
-import { FC } from "react";
+import { FC, useEffect, useRef, useState } from "react";
 import { ITicker } from "utils/declarations";
 import { green, red } from "@mui/material/colors";
 import { useDispatchedActions } from "hooks";
+import { Box } from "@mui/system";
 
 interface ITicketCard {
   info: ITicker;
@@ -12,6 +13,15 @@ interface ITicketCard {
 export const TicketCard: FC<ITicketCard> = (props) => {
   const { info } = props;
   const { selectTickerForChart } = useDispatchedActions();
+  const [changed, setChanged] = useState(false);
+
+  useEffect(() => {
+    setChanged(true);
+
+    setTimeout(() => {
+      setChanged(false);
+    }, 1000);
+  }, [info]);
 
   return (
     <Card sx={{ padding: "15px" }}>
@@ -34,23 +44,33 @@ export const TicketCard: FC<ITicketCard> = (props) => {
         </Avatar>
         <Stack>
           <Typography variant="h6">{info.ticker}</Typography>
-          <Typography variant="body1" color="secondary.main">
-            {info.price}
-          </Typography>
+          <Box className="price">
+            <Typography
+              variant="body1"
+              color="secondary.main"
+              className={changed ? "changed" : ""}
+            >
+              {info.price}
+            </Typography>
+          </Box>
         </Stack>
         <Stack>
           <Typography
             variant="body1"
+            className={changed ? "changed" : ""}
+            style={{ fontWeight: 700 }}
             color={info.incremented ? green[700] : red[700]}
           >
-            {info.incremented ? "" : "-"}
+            {info.incremented ? "+" : "-"}
             {info.change_percent}%
           </Typography>
           <Typography
             variant="body1"
+            className={changed ? "changed" : ""}
+            style={{ fontWeight: 700 }}
             color={info.incremented ? green[700] : red[700]}
           >
-            {info.incremented ? "" : "-"}
+            {info.incremented ? "+" : "-"}
             {info.change}
           </Typography>
         </Stack>

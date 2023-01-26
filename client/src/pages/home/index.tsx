@@ -18,13 +18,13 @@ const Home: FC = () => {
   }, []);
 
   return (
-    <>
+    <div data-testid="main-page">
       <Container>
         <Select />
         <TickerList />
         <Chart />
       </Container>
-    </>
+    </div>
   );
 };
 

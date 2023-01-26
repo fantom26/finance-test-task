@@ -24,6 +24,7 @@ export const Header = () => {
               component={RouterLink}
               to="/"
               color="inherit"
+              data-testid="main-link"
               style={{ textDecoration: "none" }}
             >
               <Typography variant="h6">Treding app</Typography>
@@ -33,6 +34,7 @@ export const Header = () => {
               component={RouterLink}
               to="/test"
               color="inherit"
+              data-testid="test-link"
               style={{ textDecoration: "none" }}
             >
               <Typography variant="h6">test</Typography>

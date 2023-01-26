@@ -12,7 +12,7 @@ export const TickerList: FC = () => {
       {tickers
         .filter((ticker) => selectedTickerNames.includes(ticker.ticker))
         .map((ticker, index) => (
-          <Grid key={index} item xs={4}>
+          <Grid key={index} item xs={12} sm={12} md={6} lg={4}>
             <TicketCard key={index} info={ticker} />
           </Grid>
         ))}

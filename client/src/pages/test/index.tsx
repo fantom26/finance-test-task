@@ -4,7 +4,9 @@ import { Container } from "@mui/material";
 const Test: FC = () => {
   return (
     <>
-      <Container>Test</Container>
+      <div data-testid="test-page">
+        <Container>Test</Container>
+      </div>
     </>
   );
 };

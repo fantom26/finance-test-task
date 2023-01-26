@@ -26,6 +26,7 @@ export const Select = () => {
         items={tickerNames}
         selectedTickerNames={selectedTickerNames}
         handleChange={handleChange}
+        data-testid="multiple-select-on-home"
       />
     </div>
   );
