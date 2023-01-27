@@ -6,7 +6,7 @@ export const Header = () => (
     <AppBar position="static" sx={{ paddingBlock: "10px" }}>
       <Container>
         <Stack direction="row" justifyContent="space-between" alignItems="center" spacing={2} sx={{ flexGrow: 1 }}>
-          <MuiLink component={RouterLink} to="/" color="inherit" data-testid="main-link" style={{ textDecoration: "none" }}>
+          <MuiLink component={RouterLink} to="/" color="inherit" style={{ textDecoration: "none" }}>
             <Typography variant="h6">Treding app</Typography>
           </MuiLink>
         </Stack>

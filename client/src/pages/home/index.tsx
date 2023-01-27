@@ -14,7 +14,7 @@ const Home: FC = () => {
   }, []);
 
   return (
-    <div data-testid="main-page">
+    <div>
       <Container>
         <Select />
         <TickerList />

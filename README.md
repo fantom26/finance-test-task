@@ -1,3 +1,7 @@
+# Implemented bonus
+- any additional visual effects to highlight positive or negative changes in the prices
+- the possibility to add/remove ticker from watching group
+- add charts for tickers
 
 # React Test Task
 

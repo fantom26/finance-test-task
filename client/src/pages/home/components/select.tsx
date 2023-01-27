@@ -23,7 +23,7 @@ export const Select = () => {
 
   return (
     <div style={{ marginTop: "24px" }}>
-      <MultipleSelect items={tickerNames} selectedTickerNames={selectedTickerNames} handleChange={handleChange} data-testid="multiple-select-on-home" />
+      <MultipleSelect items={tickerNames} selectedTickerNames={selectedTickerNames} handleChange={handleChange} />
     </div>
   );
 };
