@@ -1,11 +1,12 @@
-import { Grid } from "@mui/material";
 import { FC } from "react";
+
+import { Grid } from "@mui/material";
 import { TicketCard } from "components/cards";
 import { useAppSelector } from "hooks";
-import { getSocketInfo } from "store/selectors";
+import { getTickerInfo } from "store/selectors";
 
 export const TickerList: FC = () => {
-  const { tickers, selectedTickerNames } = useAppSelector(getSocketInfo);
+  const { tickers, selectedTickerNames } = useAppSelector(getTickerInfo);
 
   return (
     <Grid container spacing={2} sx={{ marginTop: 3 }}>

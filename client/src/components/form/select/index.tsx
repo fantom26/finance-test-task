@@ -16,7 +16,7 @@ const MenuProps = {
 interface MultipleSelectProps {
   items: string[];
   selectedTickerNames: string[];
-  handleChange: (event: SelectChangeEvent) => void;
+  handleChange: (event: SelectChangeEvent<string[]>) => void;
 }
 
 export const MultipleSelect: FC<MultipleSelectProps> = (props) => {

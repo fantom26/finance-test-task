@@ -1,33 +1,17 @@
 import { FC } from "react";
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend
-} from "chart.js";
-import { Line } from "react-chartjs-2";
+
+import { Box } from "@mui/material";
 import { green, red } from "@mui/material/colors";
+import { CategoryScale, Chart as ChartJS, Legend, LineElement, LinearScale, PointElement, Title, Tooltip } from "chart.js";
 import dayjs from "dayjs";
 import LocalizedFormat from "dayjs/plugin/localizedFormat";
-import { Box } from "@mui/material";
-import { getSocketInfo } from "store/selectors";
 import { useAppSelector } from "hooks";
+import { Line } from "react-chartjs-2";
+import { getTickerInfo } from "store/selectors";
 
 dayjs.extend(LocalizedFormat);
 
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend
-);
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
 export const options = {
   responsive: true,
@@ -42,16 +26,12 @@ export const options = {
 };
 
 export const Chart: FC = () => {
-  const { tickers, pricesOfTicker, tickerForChart } =
-    useAppSelector(getSocketInfo);
+  const { tickers, pricesOfTicker, tickerForChart } = useAppSelector(getTickerInfo);
 
-  const currentTicker = tickers.find(
-    (ticker) => ticker.ticker === tickerForChart
-  );
+  const currentTicker = tickers.find((ticker) => ticker.ticker === tickerForChart);
 
   const data = {
-    labels:
-      pricesOfTicker?.AAPL?.x.map((date) => dayjs(date).format("LTS")) || [],
+    labels: pricesOfTicker?.AAPL?.x.map((date) => dayjs(date).format("LTS")) || [],
     datasets: [
       {
         label: `Ticker of ${tickerForChart}`,
@@ -64,7 +44,7 @@ export const Chart: FC = () => {
   return (
     <>
       {tickerForChart.length > 0 ? (
-        <Box sx={{ marginBlock: 4 }} >
+        <Box sx={{ marginBlock: 4 }}>
           <Line options={options} data={data} />
         </Box>
       ) : null}

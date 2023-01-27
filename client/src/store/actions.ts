@@ -1,5 +1,7 @@
-import { socketActions } from "./socket/socket.slice";
+import { socketActions } from "./slices/socket/socket.slice";
+import { tickerActions } from "./slices/ticker/ticker.slice";
 
 export const StoreActions = {
-  ...socketActions
+  ...socketActions,
+  ...tickerActions
 };

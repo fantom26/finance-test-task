@@ -1,17 +1,20 @@
 import { SelectChangeEvent } from "@mui/material";
 import { MultipleSelect } from "components/form";
 import { useAppSelector, useDispatchedActions } from "hooks";
-import { getSocketInfo } from "store/selectors";
+import { getTickerInfo } from "store/selectors";
 
 export const Select = () => {
-  const { tickerNames, selectedTickerNames } = useAppSelector(getSocketInfo);
+  const { tickerNames, selectedTickerNames } = useAppSelector(getTickerInfo);
   const { setSelectedTickerNames, selectTickerForChart } = useDispatchedActions();
 
-  const handleChange = (event: SelectChangeEvent) => {
+  const handleChange = (event: SelectChangeEvent<typeof selectedTickerNames>) => {
     const {
       target: { value }
     } = event;
-    setSelectedTickerNames(value);
+    setSelectedTickerNames(
+      // On autofill we get a stringified value.
+      typeof value === "string" ? value.split(",") : value
+    );
 
     if (!value.length) {
       selectTickerForChart("");

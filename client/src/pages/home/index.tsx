@@ -1,19 +1,15 @@
 import { FC, useEffect } from "react";
+
 import { Container } from "@mui/material";
 import { useDispatchedActions } from "hooks";
-import { TickerList } from "./components/ticker-list";
-import { Select } from "./components/select";
-import { Chart } from "./components/chart";
+
+import { Chart, Select, TickerList } from "./components/";
 
 const Home: FC = () => {
-  const { startConnecting, endConnecting } = useDispatchedActions();
+  const { startConnecting } = useDispatchedActions();
 
   useEffect(() => {
     startConnecting();
-
-    return () => {
-      endConnecting();
-    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

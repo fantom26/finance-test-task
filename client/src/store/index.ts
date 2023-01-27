@@ -1,10 +1,11 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import { socketMiddleware } from "./socket/socket.middleware";
 
-import SocketSlice from "./socket/socket.slice";
+import { socketMiddleware } from "./middlewares/socket.middleware";
+import { socketSlice, tickerSlice } from "./slices";
 
 const RootReducer = combineReducers({
-  socket: SocketSlice
+  socket: socketSlice.reducer,
+  ticker: tickerSlice.reducer
 });
 
 export const store = configureStore({

@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react";
+import { FC } from "react";
 
 import { ArrowDownward, ArrowUpward } from "@mui/icons-material";
 import { Avatar, Button, Card, Stack, Typography } from "@mui/material";
@@ -14,15 +14,6 @@ interface ITicketCard {
 export const TicketCard: FC<ITicketCard> = (props) => {
   const { info } = props;
   const { selectTickerForChart } = useDispatchedActions();
-  const [changed, setChanged] = useState(false);
-
-  useEffect(() => {
-    setChanged(true);
-
-    setTimeout(() => {
-      setChanged(false);
-    }, 1000);
-  }, [info]);
 
   return (
     <Card sx={{ padding: "15px" }}>
@@ -37,17 +28,17 @@ export const TicketCard: FC<ITicketCard> = (props) => {
         <Stack>
           <Typography variant="h6">{info.ticker}</Typography>
           <Box className="price">
-            <Typography variant="body1" color="secondary.main" className={changed ? "changed" : ""}>
+            <Typography variant="body1" color="secondary.main">
               {info.price}
             </Typography>
           </Box>
         </Stack>
         <Stack>
-          <Typography variant="body1" className={changed ? "changed" : ""} style={{ fontWeight: 700 }} color={info.incremented ? green[700] : red[700]}>
+          <Typography variant="body1" style={{ fontWeight: 700 }} color={info.incremented ? green[700] : red[700]}>
             {info.incremented ? "+" : "-"}
             {info.change_percent}%
           </Typography>
-          <Typography variant="body1" className={changed ? "changed" : ""} style={{ fontWeight: 700 }} color={info.incremented ? green[700] : red[700]}>
+          <Typography variant="body1" style={{ fontWeight: 700 }} color={info.incremented ? green[700] : red[700]}>
             {info.incremented ? "+" : "-"}
             {info.change}
           </Typography>

@@ -82,10 +82,6 @@ socketServer.on("connection", (socket) => {
   });
 });
 
-socketServer.on("disconnect", (socket) => {
-  socket.off("start");
-});
-
 server.listen(PORT, () => {
   console.log(`Streaming service is running on http://localhost:${PORT}`);
 });

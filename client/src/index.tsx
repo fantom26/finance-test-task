@@ -5,7 +5,6 @@ import { store } from "store";
 import { ThemeProvider } from "theme";
 
 import { App } from "./app";
-import "./assets/style.css";
 
 ReactDOM.render(
   <Router>

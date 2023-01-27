@@ -1,5 +1,5 @@
 export enum TickerEvent {
-  start = "start",
+  start = "start"
 }
 
 export interface ITickerApi {
